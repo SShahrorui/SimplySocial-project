@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+      <h1>Welcome{{user.username}}</h1>
+      <a href="{% url 'socialApp:logout' %}">Log Out</a>
+    {% endif %}
+  </body>
+</html>
