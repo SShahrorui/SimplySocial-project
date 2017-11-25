@@ -1,0 +1,156 @@
+
+
+@charset "utf-8";
+
+/* CSS Document */
+
+.bgImage {
+	position: fixed;
+	background-image: url('Social.jpg');
+	background-repeat: no-repeat;
+	/*background-position:center;*/
+	background-size: cover;
+	/*position:relative;*/
+	height: 100vh;
+	width: 100%;
+	background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url('Social.jpg');
+}
+
+.text-in-header {
+	padding: 0;
+	bottom: 50%;
+	color: white;
+	font-size: 27px;
+	line-height: 28px;
+	font-weight: bold;
+	position: absolute;
+}
+
+.nav {
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-left: 60%;
+	margin-right: 15%;
+	margin-bottom: 65%;
+	width: 300px;
+	height: 200px;
+	background: #fff;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 1px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.middle
+{
+
+}
+
+.nav1 {
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-left: 60%;
+	margin-right: 15%;
+	margin-bottom: 65%;
+	width: 300px;
+	height: 400px;
+	background: #fff;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 1px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+#h1 {
+	padding-top: 5px;
+	margin-top: 20px;
+	font-size: 25px;
+	color: #14171a;
+	font-weight: bold;
+}
+
+.email {
+	border: 1px solid #a6a6a6;
+	width: 230px;
+	height: 40px;
+	border-radius: 3px;
+	margin-top: 8px;
+	padding-left: 9px;
+	color: #6c6c6c;
+	background: #fcfcfc;
+	outline: none;
+}
+
+
+
+.password {
+	border: 1px solid #a6a6a6;
+	width: 230px;
+	height: 40px;
+	border-radius: 3px;
+	margin-top: 5px;
+	margin-right: 3px;
+	padding-left: 9px;
+	color: #6c6c6c;
+	background: #fcfcfc;
+	outline: none;
+}
+
+.password:hover,
+.username:hover,
+.email:hover {
+	box-shadow: 0 0 10px rgba(178, 34, 34, 1);
+	border: 1px #b22222 solid;
+}
+
+.password:focus,
+.username:focus,
+.button:focus,
+.button:hover:focus,
+.email:focus {
+	box-shadow: 0 0 10px rgba(178, 34, 34, 1);
+	border: 1px #b22222 solid;
+}
+
+.button {
+	color: white;
+	background-color: #4267b2;
+	font-size: 20px;
+	border: 1px solid #a6a6a6;
+	width: 243px;
+	height: 43px;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-right: 6px;
+	outline: none;
+}
+
+.button:hover {
+	background: rgb(204, 0, 0);
+	/* Old browsers */
+	background: -moz-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(204, 0, 0)), color-stop(100%, rgb(204, 0, 0)));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000', GradientType=0);
+	/* IE6-9 */
+}
+
+label {
+	position: relative;
+	top: 5px;
+	margin-right: 115px;
+}
+
+label span {
+	margin-left: 5px;
+	font-size: 14px;
+}
