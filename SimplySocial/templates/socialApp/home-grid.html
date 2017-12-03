@@ -1,0 +1,221 @@
+{% extends "socialApp/base.html" %}
+{% load embed_video_tags %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block header %}
+
+<div  class="HeaderPageOne">
+{% if user.is_authenticated %}
+<!--Whats in your mind-->
+
+  <div class="card5">
+    <div class="card"style=" background:rgba(255,255,255,0.6);" >
+
+        <div class="card-body">
+
+            <div class="card-body1">
+              <form  enctype="multipart/form-data" method="POST" id="new_post" submit-url="{% url 'socialApp:home' %}" >
+                {% csrf_token %}
+                {{ post_form.non_field_errors }}
+                {{ post_form.source.errors }}
+                {{ post_form.source }}
+                <div class="row">
+                  <p>
+                    {{post_form.text.error}}
+                    {{ post_form.text }}
+                  </p>
+                </div>
+                {{post_form.image.error}}
+                {{post_form.image}}
+                    <div class="row">
+                        <a href="" class="card-link col-lg-3">
+                            <div class="row no-gutters img-upload">
+
+                                <i class="fa fa-camera col-lg-3" style="color:blue;" aria-hidden="true"></i>
+                                <p class="col-lg-7 " style="font-size:15px; color:blue;">Add Photo</p>
+                            </div>
+                        </a>
+
+                        <a  class="card-link col-lg-3 pointer">
+                            <div class="row no-gutters" onclick="show()">
+
+                                <i class="fa fa-video-camera col-lg-3" style="color:blue;" aria-hidden="true"></i>
+                                <p class="col-lg-7" style="font-size:15px;color:blue;" >Add Video
+                                  {{post_form.video_link.error}}
+                                  {{post_form.video_link}}
+                                </p>
+                            </div>
+                        </a>
+                    <input type="submit" value="submit" name='submit' class="hidden" alt=""/>
+                </div>
+
+              </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="row3">
+
+    <div class="row no-gutters"style="margin-left:45px;">
+
+        <div class="row2 col-lg-1 col-2">
+            <a href="{% url 'socialApp:home' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:7px;">All Posts</a>
+        </div>
+
+        <div class="row2 col-lg-1">
+            <a href="{% url 'socialApp:photos' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:20px;">Photo</a>
+        </div>
+
+        <div class="row2 col-lg-1" style="margin-right:240px;">
+            <a href="{% url 'socialApp:videos' %}" class="card-link" style="color:black;font-size:15px;font-weight:bold;margin-left:20px;">Video</a>
+        </div>
+
+        <div class="row5 col-lg-1">
+            <a class="links" href="{% url 'socialApp:home' %}"><i class="fa fa-bars" style="color:blue;margin-left:27px;" aria-hidden="true"></i></a>
+        </div>
+
+​
+
+        <div class="row5 col-lg-1">
+            <a class="links" href="{% url 'socialApp:home_grid' %}"><i class="fa fa-th-large" style="color:blue;" aria-hidden="true"></i></a>
+        </div>
+    </div>
+
+</div>
+
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block body %}
+
+	<!--second cloumn-->
+  <div class="row infinite-container">
+    {% for post in posts %}
+  	<div class="cards3 col-lg-4 infinite-item">
+        <div class="cards4">
+            <div class="card">
+   							<div class="row">
+   								<div class="proimg col-lg-2">
+   										 <a class="links" href="test.html">
+                          <!--userpic-->
+   										     <img class="img1" src="{{post.user_profile.profile_pic.url}}">
+   										  </a>
+
+   								</div>
+   								<div class="card-body col-lg-10">
+   									<p class="card-title">
+                      <!--username-->
+                      {{post.user}}
+                      <div class="time">
+                        <!--time-->
+                        <a class="links" href="test.html">
+                         <i class="fa fa-reply" aria-hidden="true" style="font-size:15px;margin-right:15px;"></i>
+                       </a>
+                        <a class="links" href="test.html">
+                         <i class="fa fa-heart-o" aria-hidden="true" style="font-size:15px; margin-right:15px;"></i>
+                       </a>
+                       <i style="font-size:10px; color:gray;margin-right:15px;">{{post.created_date|naturaltime}}</i>
+                     </div>
+   										</p>
+   										<p class="card-text">
+                        <!--Text-->
+                       {{post.text}}
+   										</p>
+
+   	              </div>
+
+   			        </div>
+
+                {% if post.image %}
+                  <div class="row">
+                    <!--image-->
+                    <img class="img2 col-lg-12" src="{{post.image.url}}">
+                  </div>
+                {% endif %}
+                {% if post.video_link %}
+                  {% video post.video_link as my_video %}
+                    {% video my_video '350x250' %}
+                  {% endvideo %}
+                {% endif %}
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{forloop.counter}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
+                              <div class="row">
+                                <p class="parg col-lg-4">expand</p>
+                                <i class="fa fa-caret-down col-lg-1" style="font-size:10px;color:gray;" aria-hidden="true">&nbsp expand</i>
+                              </div>
+                  </button>
+                  <div class="collapse" id="template{{forloop.counter}}">
+                    <div class="row">
+
+                      <div class="proimg col-lg-2">
+                        <a class="links" href="test.html">
+                          <img class="img1" src="{% static "images/speakers.jpg" %}">
+                        </a>
+                      </div>
+                      <div class="card-body col-lg-10">
+                        <p class="card-title" style="">
+                          hussam jarrar
+                          <div class="pr">
+                            <i style="font-size:15px;">25m</i>
+                            <a class="links" href="test.html">
+                              <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </a>
+
+                            <a class="links" href="test.html">
+                              <i class="fa fa-reply" aria-hidden="true"></i>
+                            </a>
+                          </div>
+                        </p>
+                        <p class="" style="text-align: left; width:343; height:415;">
+                          Which all, morning is'nt.Femaleandown living dry,and morning lesserfirst he stars under years thing
+                        </p>
+                      </div>
+                    </div>
+
+                  </div><!--collapse end-->
+   						</div>
+          </div>
+
+  	</div>
+{% endfor %}
+
+</div>
+
+<div class="row">
+
+  <div class="empty col-lg-5">
+    </div>
+
+    <div class="sub col-lg-2">
+        {% if posts.has_next %}
+        <a class="infinite-more-link int1" href="?page={{ posts.next_page_number }}">LOAD MORE</a>
+        {% endif %}
+    </div>
+    <div class="loading" style="display: none;">
+        Loading...
+    </div>
+
+    <div class="empty col-lg-5">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+</script>
+{% endblock %}

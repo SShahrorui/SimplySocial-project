@@ -1,33 +1,144 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
-   <head>
-    {% block title_block  %}
-    {# Anything outside of this will be inherited if you use extend.#}
+<head>
+  <meta charset="utf-8">
+  <title>social</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static "css/simplysocial.css" %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/infinite.min.js' %}"></script>
+  <script src="{% static 'js/simplysocial.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/b972bfb609.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+  <header>
+    <div class="HeaderContent">
+      <div class="container-fluid">
+
+
+
+        <div class="logoNav">
+
+
+        </div>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: black">
+          <nav class="logo-nav">
+            <nav class="navbar navbar-light">
+              <div class="row">
+                <i class="fa fa-comments fa-2x col-2" aria-hidden="true"></i>
+                <a class="navbar-brand col-2" href="{% url 'socialApp:home' %}"><span style="color:#808080">simply</span>social</a>
+              </div>
+            </nav>
+          </nav>
+
+
+          <!-- EDIT HERE !-->
+
+          <div class="navDropDown">
+
+            <button class="navbarbtn"  type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" style="background-color:black;">
+              <img src="{{user_avatar.profile_pic.url}}" class="special-img">
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+              <a href="{% url 'socialApp:profile' username=request.user.username %}" style="text-align:center;">Profile</a><br>
+              <a href="#" style="text-align:center;">Followers</a><br>
+              <a href="#" style="text-align:center;">Following</a><br>
+              <a href="#" style="text-align:center;">Settings</a><br>
+              <a href="#" style="text-align:center;">Favorites</a><br>
+              <a href="#" style="text-align:center;">Replies</a><br>
+            </div>
+          </div>
+
+
+<div class="dropdown">
+
+  <img src="{{user_avatar.profile_pic.url}}" class="special-img">
+  <div class="dropdown-content">
+    <li><a href="{% url 'socialApp:profile' username=request.user.username %}">Profile</a></li>
+    <div class="dropdown-divider"></div>
+    <li><a href="#">Followers</a></li>
+    <div class="dropdown-divider"></div>
+    <li><a href="#">Following</a></li>
+    <div class="dropdown-divider"></div>
+    <li><a href="#">Settings</a></li>
+    <div class="dropdown-divider"></div>
+    <li><a href="#">Favorites</a></li>
+    <div class="dropdown-divider"></div>
+    <li><a href="#">Replies</a></li>
+  </div>
+
+</div>
+
+
+
+
+<div class="logopost">
+  <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+</div>
+
+<form  method="POST" action="{% url 'socialApp:search' %}">
+   {% csrf_token %}
+
+        <input type="text" name="srh" class="searchIcon">
+        <i id="filtersubmit" class="fa fa-search" aria-hidden="true"></i>
+
+      <button type="submit" class="hidden">search</button>
+</form>
+
+          <!-- END HERE -->
+          <a class="logOut" href="{% url 'socialApp:logout' %}">LogOut</a>
+
+        </nav>
+
+      </div>
+      {% block header %}
+      {% endblock %}
+    </div>
+
+
+
+
+
+  </header>
+  <div class="container">
+    {% block body %}
     {% endblock %}
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </div>
 
-      <!--Bootstrap-->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <footer>
+    <div class="mastfoot">
+      <div class="inner">
+        <ul class="list-inline">
+          <hr style="color:blue;">
 
-      <!--Custom CSS-->
-      <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+          <li><a href="#">About us</a></li>&nbsp;&nbsp
+          <li><a href="#">Support</a></li>&nbsp;&nbsp
+          <li><a href="#">Privacy</a></li>&nbsp;&nbsp
+          <li><a href="#">Terms</a></li>&nbsp;&nbsp
+          <span style="color:blue;">&copy; 2017 SIMPLYSOCIAL </span>
+        </ul>
+      </div>
+    </div>
 
-      <!--Fonts-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-   </head>
-
-   <body>
+  </footer>
 
 
+</body>
 
-     <!--JS-->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-     {% block script%}
-     {%endblock%}
-   </body>
 </html>

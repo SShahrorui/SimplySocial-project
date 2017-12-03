@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'social_django',
+    'embed_video',
     'socialApp',
+
 ]
 
 MIDDLEWARE = [
@@ -66,9 +69,12 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                #'django.template.context_processors.media',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'socialApp.context_processors.userAvatar',
+
             ],
         },
     },
@@ -83,7 +89,7 @@ WSGI_APPLICATION = 'SimplySocial.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'simplysocial',
+        'NAME': 'social',
         'USER': 'socialuser',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

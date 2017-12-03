@@ -1,0 +1,59 @@
+{% extends 'socialApp/base.html' %}
+{% load embed_video_tags %}
+{% block body %}
+    {% if user.is_authenticated %}
+      <h1>Welcome{{user.username}}</h1>
+
+      <form  enctype="multipart/form-data" method="POST" id="new_post" submit-url="{% url 'socialApp:home' %}" >
+        {% csrf_token %}
+        {% for field in post_form %}
+        <p>
+          {{ field }}
+          {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+        {% endfor %}
+       <input type="submit" value="submit" name='submit' class="button" alt=""/></br>
+        <!--<input type="hidden" name="next" value="{{next}}">-->
+      </form>
+
+      <div id="post_feed">
+        {% for post in posts %}
+          <p>{{post.user}}</p>
+          <img src="{{user.profile_pic.url}}" class="special-img">
+          <p>{{post.created_date}}</p>
+          <p>{{post.text}}</p>
+            {% if post.image %}
+              <img src="{{post.image.url}}" alt="">
+            {% endif %}
+            {% if post.video_link %}
+              {% video post.video_link as my_video %}
+                {% video my_video 'tiny' %}
+              {% endvideo %}
+
+            {% endif %}
+        {% endfor %}
+      </div>
+
+    {% endif %}
+
+   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+    var frm = $('#new_post')
+    frm.submit(function () {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('submit-url'),
+            data: frm.serialize(),
+            success: function (data) {
+                var result = $('<div />').append(data).find('#post_feed').html();
+               $("#post_feed").html(result);
+               $("#new_post")[0].reset();
+            }
+        });
+        return false;
+    });
+
+    </script>
+{% endblock %}

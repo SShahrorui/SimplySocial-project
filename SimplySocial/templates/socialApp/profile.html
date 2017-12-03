@@ -3,105 +3,13 @@
 {% load staticfiles %}
 {% load humanize %}
 
-
 {% block header %}
+  {% for u in user %}
+    {{u.username}}
+    {{u.email}}
 
-<div  class="HeaderPageOne">
-{% if user.is_authenticated %}
-<!--Whats in your mind-->
-
-  <div class="card5">
-    <div class="card"style=" background:rgba(255,255,255,0.6);" >
-
-        <div class="card-body">
-
-            <div class="card-body1">
-              <form  enctype="multipart/form-data" method="POST" id="new_post" submit-url="{% url 'socialApp:home' %}" >
-                {% csrf_token %}
-                {{ post_form.non_field_errors }}
-                {{ post_form.source.errors }}
-                {{ post_form.source }}
-                <div class="row">
-                  <p>
-                    {{post_form.text.error}}
-                    {{ post_form.text }}
-                  </p>
-                </div>
-                <div onclick="videoImage()">
-                  {{post_form.image.error}}
-                  {{post_form.image}}
-                </div>
-
-                    <div class="row">
-                        <a class="card-link col-lg-3 pointer">
-                            <div class="row no-gutters img-upload">
-
-                                <i class="fa fa-camera col-lg-3" style="color:blue;" aria-hidden="true"></i>
-                                <p class="col-lg-7 " style="font-size:15px; color:blue;">Add Photo</p>
-                            </div>
-                        </a>
-
-                        <a  class="card-link col-lg-3 pointer">
-                            <div class="row no-gutters" onclick="show()">
-
-                                <i class="fa fa-video-camera col-lg-3" style="color:blue;" aria-hidden="true"></i>
-                                <p class="col-lg-7" onclick="videoImage()" style="font-size:15px;color:blue;" >Add Video
-
-                                    {{post_form.video_link.error}}
-                                    {{post_form.video_link}}
-
-                                </p>
-                            </div>
-                        </a>
-
-                    <input type="submit" value="submit" name='submit' class="hidden" alt=""/>
-                </div>
-
-              </form>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="row3">
-
-    <div class="row no-gutters"style="margin-left:45px;">
-
-        <div class="row2 col-lg-1 col-2">
-            <a href="{% url 'socialApp:home' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:7px;">All Posts</a>
-        </div>
-
-        <div class="row2 col-lg-1">
-            <a href="{% url 'socialApp:photos' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:20px;">Photo</a>
-        </div>
-
-        <div class="row2 col-lg-1" style="margin-right:240px;">
-            <a href="{% url 'socialApp:videos' %}" class="card-link" style="color:black;font-size:15px;font-weight:bold;margin-left:20px;">Video</a>
-        </div>
-
-        <div class="row5 col-lg-1">
-            <a class="links" href="{% url 'socialApp:home' %}"><i class="fa fa-bars" style="color:blue;margin-left:27px;" aria-hidden="true"></i></a>
-        </div>
-
-​
-
-        <div class="row5 col-lg-1">
-            <a class="links" href="{% url 'socialApp:home_grid' %}"><i class="fa fa-th-large" style="color:blue;" aria-hidden="true"></i></a>
-        </div>
-    </div>
-
-</div>
-
-</div>
-{% endif %}
-
+  {% endfor %}
 {% endblock %}
-
-
 
 {% block body %}
 
@@ -303,10 +211,6 @@ var infinite = new Waypoint.Infinite({
       }
     });
 
-
 </script>
 
 {% endblock %}
-
-
-​

@@ -1,0 +1,389 @@
+/*post page style*/
+.cards{
+margin-top: 8%;
+
+}
+.cards4{
+	margin-top: 8%;
+}
+.img2{
+	height: 250px;
+}
+
+.img1{
+  margin-top:  35%;
+  margin-left: 35%;
+  border-radius: 10%;
+	height: 47px;
+	width: 47px;
+}
+.card-title{
+  text-align: left;
+  font-size: 20px;
+  font-family: 'arial';
+
+
+}
+.time{
+	font-size: 10px;
+	margin-top: -35px;
+	text-align: end;
+}
+
+.card-text1{
+  color: gray;
+	margin-top: 15px;
+}
+}
+.parg{
+  color:black;
+  font-size: 22px;
+
+
+}
+button{
+  width: 200px;
+  border-color: white;
+  background-color: white;
+  border: 0px solid;
+}
+.int1{
+  border-color: white;
+  background-color: white;
+	background-size: 19.1% 5.8%;
+	color: gray;
+	padding:15px 18px 15px 18px;
+	border: 0px solid;
+	border-radius: 5px;
+  font-size: 10px;
+  margin-left: 25px;
+
+}
+/* Popup container */
+.popup {
+   position: relative;
+   display: inline-block;
+   cursor: pointer;
+}
+
+/* newpost submit button */
+.hidden
+{
+	visibility: hidden;
+	height: 0px;
+}
+
+/* image upload button */
+.browse
+{
+	 position: absolute;
+	 cursor: pointer;
+	 opacity: 0;
+	 
+}
+
+.img-upload
+{
+	position: relative;
+
+}
+
+.video-box
+{
+	position: absolute;
+	display: none;
+	margin-left: 10px;
+}
+
+.pointer
+{
+cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+   visibility: hidden;
+   width: 160px;
+   background-color: #555;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 8px 0;
+   position: absolute;
+   z-index: 1;
+   bottom: 125%;
+   left: 50%;
+   margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+   content: "";
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   margin-left: -5px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+   visibility: visible;
+   -webkit-animation: fadeIn 1s;
+   animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+   from {opacity: 0;}
+   to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+   from {opacity: 0;}
+   to {opacity:1 ;}
+}
+/*nav*/
+
+.special-img
+{
+		margin-right: -90%;
+
+    border-radius: 20%;
+		height:30px;
+		width:30px;
+}
+
+
+#filtersubmit {
+	position: absolute;
+	cursor: pointer;
+	width: 40px;
+	margin-top: 30%;
+
+}
+#navbarCollapse{
+	text-align: center;
+}
+
+.fa-comments {
+   margin-right: 10px;
+   color: blue;
+}
+
+li
+{
+    list-style-type: none;
+
+}
+
+.mastfoot {
+		font-size: 13px;
+    margin-bottom:5% ;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+
+
+.inner {
+ text-align: center;
+}
+.inner ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+.inner li {
+  display: inline;
+}
+
+.list-inline a{
+    color:blue;
+}
+
+.logo-nav
+{
+		margin-left: 40px;
+
+}
+
+.logOut{
+	margin-left: 60px;
+}
+.dropdown {
+    margin-left: 78%;
+		margin-right: -285px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.test {
+    margin: 5%; /*solution 1 */
+}
+.fa-search{
+	color:gray;
+	margin-left:-2%;
+}
+
+/*nav ul{
+  list-style: none;
+  margin: 0 2px;
+  padding: 0;
+}
+
+nav li {
+   display: inline-block;
+   padding: 5px 5px;
+   }*/
+
+   nav a {
+      font-weight: normal;
+      padding: 1px 5px;
+      font-size: .80em;
+  }
+	.searchIcon{
+		background-color:black;
+		border:1px solid;
+		border-radius:5px;
+		margin-top: 12%;
+	}
+  .navDropDown{
+
+display: none;
+	}
+	/*media q for mobile*/
+@media screen and (max-width:767px){
+	.navDropDown{
+		display: block;
+		margin-left: 16%;
+	}
+	.dropdown{
+		display: none;
+	}
+	.searchIcon{
+		display: none;
+	}
+	.special-img{
+		margin: auto;
+		border-radius: 20%;
+		height:30px;
+		width:30px;
+	}
+	.logopost {
+		margin-left: 20%;
+
+
+	}
+	.logo-nav
+	{
+	   display: none;
+	}
+	.logOut{
+		margin-left: -20px;
+		margin-right: 25px;
+	}
+}
+/*media q for tablet*/
+@media screen and (max-width:1279px) and (min-width:767px) {
+	.logopost {
+
+
+
+	}
+ .dropdown{
+	 margin-left: 50%;
+	 margin-right: -290px;
+ }
+ .fa-search{
+	 margin-left: -3%;
+ }
+}
+
+/*header*/
+.HeaderContent {
+
+	background-image: url("/static/images/rowan-heuvel-110602_720.jpg");
+
+   	background-position: 100%;
+
+	  background-position: center;
+
+   	background-repeat: no-repeat;
+
+   	background-size: cover;
+
+  	padding: 10.5rem 1.5rem;
+
+  	height: 450px;
+
+
+}
+.card5 {
+
+	margin-left: 300px;
+
+  margin-right: 450px;
+
+
+
+	padding-top:0;
+
+	width:50%;
+
+}
+
+.row3 {
+
+	padding-left:300px;
+
+	padding-top:30px;
+
+}
+
+.row2:hover{
+	border-bottom: 5px solid;
+	border-color: blue;
+}
+
+.row2 {
+
+	padding-top:60px;
+
+}
+.row5 {
+
+	padding-top:60px;
+
+}
+.postArea{
+	  background:rgba(255,255,255,0);
+	border: 0px solid;
+	margin-bottom: 25px;
+	margin-left: 20px;
+	font-size: 25px;
+}
