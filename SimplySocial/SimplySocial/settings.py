@@ -89,8 +89,8 @@ WSGI_APPLICATION = 'SimplySocial.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'social',
-        'USER': 'socialuser',
+        'NAME': 'simplysociallast',
+        'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '',

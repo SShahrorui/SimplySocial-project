@@ -19,4 +19,5 @@ url(r'^(?P<id>\d+)/edit/$',views.profile_update,name="SettingsUpdate"),
 url(r'^search/result/$',views.search,name="search"),
 url(r'^(?P<username>\w+)/profile/$',views.user_detail,name="profile"),
 
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

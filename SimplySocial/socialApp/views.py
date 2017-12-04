@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
-from socialApp.models import Post,Profile
-from socialApp.forms import SignUpForm,LoginForm,PostForm,ProfileForm,UserForm
+from socialApp.models import Post,Profile,Reply
+from socialApp.forms import SignUpForm,LoginForm,PostForm,ProfileForm,UserForm,ReplyForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import(DetailView)
 
@@ -92,7 +92,8 @@ def home(request):
     except PageNotAnInteger:
         numbers = paginator.page(1)
     except EmptyPage:
-        numbers = paginator.page(paginator.num_pages)
+       numbers = paginator.page(paginator.num_pages)
+
     return render(request, 'socialApp/home.html',{'post_form':post_form,'posts':numbers})
 
 #postfeed/grid view
@@ -204,7 +205,7 @@ def profile_update(request,id=None):
 
     return render(request,"socialApp/SaveSettings.html",context)
 
-#Search function
+#Search functioncomm = Reply()
 def search (request):
    if request.method =='POST':
        srch = request.POST['srh']
@@ -224,7 +225,7 @@ def search (request):
    return render(request,'socialApp/result.html')
 
 def user_detail(request,username):
-    
+
     try:
         user = User.objects.filter(username=username)
         post = Post.objects.filter(user=user)
@@ -232,3 +233,26 @@ def user_detail(request,username):
        raise Http404
 
     return render(request,'socialApp/profile.html',{'user':user,'posts':post})
+
+@login_required
+def reply(request,id):
+    # List of active comments for this post
+    current_user = request.user
+    print(current_user)
+    reply_form = ReplyForm()
+    if request.method == 'POST':
+        # A comment was posted
+        reply_form = ReplyForm(data=request.POST)
+        if reply_form.is_valid():
+            # Create Comment object but don't save to database yet
+            reply =reply_form.save(commit=False)
+            # Assign the current user to the comment
+            reply_form.instance.user = User(current_user.id)
+            reply_form.instance.user_profile = Profile.objects.get(user=current_user)
+            reply_form.instance.post = Post.objects.get(post_id=id)
+            reply.save()
+            reply_form = ReplyForm()
+    else:
+        reply_form = ReplyForm()
+    replys = Reply.objects.all().order_by('-created_date')
+    return render(request,'socialApp/home.html',{'reply_form':reply_form,'replys':replys})
