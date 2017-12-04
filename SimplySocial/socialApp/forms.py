@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import User,UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
-from socialApp.models import Post,Profile
+from socialApp.models import Post,Profile,Reply
 from django.forms import ModelForm
 #from django.contrib.auth import get_user_model
 
@@ -64,10 +64,13 @@ class ProfileForm(forms.ModelForm):
         fields = ('profile_pic','bio','website')
 
 
-
-
-
 class UserForm(forms.ModelForm):
    class Meta:
        model = User
        fields = ('username', 'email', 'password')
+
+
+class ReplyForm(forms.ModelForm):
+    class Meta:
+        model = Reply
+        fields = ('text',)
