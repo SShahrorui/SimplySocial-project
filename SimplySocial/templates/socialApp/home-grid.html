@@ -68,11 +68,11 @@
             <a href="{% url 'socialApp:home' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:7px;">All Posts</a>
         </div>
 
-        <div class="row2 col-lg-1">
+        <div class="row7 col-lg-1">
             <a href="{% url 'socialApp:photos' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:20px;">Photo</a>
         </div>
 
-        <div class="row2 col-lg-1" style="margin-right:240px;">
+        <div class="row7 col-lg-1" style="margin-right:240px;">
             <a href="{% url 'socialApp:videos' %}" class="card-link" style="color:black;font-size:15px;font-weight:bold;margin-left:20px;">Video</a>
         </div>
 
@@ -116,14 +116,58 @@
                       {{post.user}}
                       <div class="time">
                         <!--time-->
-                        <a class="links" href="test.html">
-                         <i class="fa fa-reply" aria-hidden="true" style="font-size:15px;margin-right:15px;"></i>
-                       </a>
-                        <a class="links" href="test.html">
-                         <i class="fa fa-heart-o" aria-hidden="true" style="font-size:15px; margin-right:15px;"></i>
-                       </a>
-                       <i style="font-size:10px; color:gray;margin-right:15px;">{{post.created_date|naturaltime}}</i>
-                     </div>
+
+                        <!-- ======REPLY BUTTON======== -->
+                        <a class="links"href="#" data-toggle="modal" data-target="#centralModalInfoDemo">
+                          <i class="fa fa-reply" aria-hidden="true" style="font-size:15px;margin-right:15px;"  data-toggle="modal" data-target="#centralModalInfoDemo{{post.post_id}}"></i>
+                        </a>
+
+                          <a >
+                          <i class="likepost fa fa-heart-o" id="{{post.post_id}}" aria-hidden="true" style="font-size:15px; margin-right:15px;">{% csrf_token %}</i>
+                          </a>
+
+                        <i style="font-size:10px; color:gray;margin-right:15px;">{{post.created_date|naturaltime}}</i>
+                        <form action="{% url 'socialApp:reply' pk=post.pk %}" method="POST">
+                                          {% csrf_token %}
+                                          <!-- Central Modal Info Demo-->
+                                          <div class="modal fade" id="centralModalInfoDemo{{post.post_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-notify modal-info" role="document">
+                                              <!--Content-->
+                                              <div class="modal-content">
+                                                <!--Header-->
+                                                <div class="modal-header">
+                                                  <p class="heading lead">Comment</p>
+
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true" class="white-text">&times;</span>
+                                                  </button>
+                                                </div>
+
+                                                <!--Body-->
+                                                <div class="modal-body">
+                                                  <div class="text-center">
+                                                    <div class="form-group">
+                                                      <input type="text" name="text" class="form-control" id="formGroupExampleInput" placeholder="write comment">
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                <!--Footer-->
+                                                <div class="modal-footer justify-content-center">
+                                                  <div class="text-center mt-1-half">
+                                                    <button type="submit" id="submitButton" class="btn btn-info mb-1">Submit <i class="fa fa-check ml-1"></i></button>
+
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <!--/.Content-->
+                                            </div>
+                                          </div>
+                                          <!-- Central Modal Info Demo-->
+
+                                          <!-- END COMMENT DEV -->
+                                        </form>
+                      </div>
    										</p>
    										<p class="card-text">
                         <!--Text-->
@@ -142,41 +186,42 @@
                 {% endif %}
                 {% if post.video_link %}
                   {% video post.video_link as my_video %}
-                    {% video my_video '350x250' %}
+                    {% video my_video '100%x250' %}
                   {% endvideo %}
                 {% endif %}
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{forloop.counter}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
-                              <div class="row">
-                                <p class="parg col-lg-4">expand</p>
-                                <i class="fa fa-caret-down col-lg-1" style="font-size:10px;color:gray;" aria-hidden="true">&nbsp expand</i>
-                              </div>
-                  </button>
-                  <div class="collapse" id="template{{forloop.counter}}">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{post.post_id}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
+                							<div class="row">
+                								<p class="parg col-lg-4">expand</p>
+                								<i class="fa fa-caret-down col-lg-1" style="font-size:10px;color:gray;" aria-hidden="true">&nbsp; expand</i>
+                							</div>
+                	</button>
+                  <div class="collapse" id="template{{post.post_id}}">
                     <div class="row">
-
-                      <div class="proimg col-lg-2">
+                      {% for comment in post.comments.all %}
+                      <div class="proimg col-lg-2" data-target="#template{{reply.post.post_id}}">
                         <a class="links" href="test.html">
-                          <img class="img1" src="{% static "images/speakers.jpg" %}">
+                          <img class="img1" src="{{comment.user_profile.profile_pic.url}}">
                         </a>
                       </div>
-                      <div class="card-body col-lg-10">
+                      <div class="card-body col-lg-10" id="template{{reply.post.post_id}}">
                         <p class="card-title" style="">
-                          hussam jarrar
-                          <div class="pr">
-                            <i style="font-size:15px;">25m</i>
-                            <a class="links" href="test.html">
-                              <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            </a>
+                        {{comment.user_profile.user}}
+                        <div class="time">
 
-                            <a class="links" href="test.html">
-                              <i class="fa fa-reply" aria-hidden="true"></i>
-                            </a>
-                          </div>
+
+                          <a >
+                          <i class="likepost fa fa-heart-o" id="{{post.post_id}}" aria-hidden="true" style="font-size:15px; margin-right:15px;">{% csrf_token %}</i>
+                          </a>
+
+                        <i style="font-size:10px; color:gray;margin-right:15px;">{{comment.created_date|naturaltime}}</i>
+                      </div>
                         </p>
                         <p class="" style="text-align: left; width:343; height:415;">
-                          Which all, morning is'nt.Femaleandown living dry,and morning lesserfirst he stars under years thing
+                          {{comment.text|linebreaks }}
+
                         </p>
                       </div>
+                      {% endfor %}
                     </div>
 
                   </div><!--collapse end-->

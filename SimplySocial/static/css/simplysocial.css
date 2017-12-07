@@ -79,7 +79,7 @@ button{
 	 position: absolute;
 	 cursor: pointer;
 	 opacity: 0;
-	 
+
 }
 
 .img-upload
@@ -134,6 +134,63 @@ cursor: pointer;
    -webkit-animation: fadeIn 1s;
    animation: fadeIn 1s
 }
+
+.save {
+	color: white;
+	background-color: #337ab7;
+	font-size: 15px;
+	border: 1px solid #a6a6a6;
+	width: 150px;
+	height: 40px;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-right: 6px;
+	outline: none;
+}
+
+.save:focus {
+	box-shadow: 0 0 10px rgba(178, 34, 34, 1);
+	border: 1px #b22222 solid;
+}
+
+.save:hover {
+	background: rgb(204, 0, 0);
+	/* Old browsers */
+	background: -moz-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(204, 0, 0)), color-stop(100%, rgb(204, 0, 0)));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#cc0000', GradientType=0);
+	/* IE6-9 */
+}
+.form-control
+{
+	width: 400px;
+	height: 40px;
+}
+
+.button {
+	color: gray;
+	background-color: white;
+	font-size: 15px;
+	border: 1px solid #a6a6a6;
+	width: 80px;
+	height: 25px;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-right: 6px;
+	outline: none;
+}
+
+
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
@@ -277,52 +334,7 @@ nav li {
 display: none;
 	}
 	/*media q for mobile*/
-@media screen and (max-width:767px){
-	.navDropDown{
-		display: block;
-		margin-left: 16%;
-	}
-	.dropdown{
-		display: none;
-	}
-	.searchIcon{
-		display: none;
-	}
-	.special-img{
-		margin: auto;
-		border-radius: 20%;
-		height:30px;
-		width:30px;
-	}
-	.logopost {
-		margin-left: 20%;
 
-
-	}
-	.logo-nav
-	{
-	   display: none;
-	}
-	.logOut{
-		margin-left: -20px;
-		margin-right: 25px;
-	}
-}
-/*media q for tablet*/
-@media screen and (max-width:1279px) and (min-width:767px) {
-	.logopost {
-
-
-
-	}
- .dropdown{
-	 margin-left: 50%;
-	 margin-right: -290px;
- }
- .fa-search{
-	 margin-left: -3%;
- }
-}
 
 /*header*/
 .HeaderContent {
@@ -365,15 +377,30 @@ display: none;
 
 }
 
-.row2:hover{
-	border-bottom: 5px solid;
-	border-color: blue;
-}
+
 
 .row2 {
-
+	border-bottom: 5px solid;
+	border-color: blue;
 	padding-top:60px;
+}
+.row7:hover{
+	border-bottom: 5px solid;
+	border-color: blue;
 
+}
+h1{
+	-webkit-text-stroke: 3px blue;
+	text-stroke: 3px blue;
+	text-align:center;
+	 color:white;
+	 font-weight: bold;
+	  font-size:50px;
+		font-family:sans-serif;
+
+}
+.row7{
+	padding-top:60px;
 }
 .row5 {
 
@@ -386,4 +413,138 @@ display: none;
 	margin-bottom: 25px;
 	margin-left: 20px;
 	font-size: 25px;
+}
+/*grid*/
+#cardcolumns{
+	margin-top: 20px;
+}
+.row6:hover{
+	border-bottom: 5px solid;
+	border-color: blue;
+	padding-bottom: -10px;
+}
+.row8 {
+
+	border-bottom: 5px solid;
+	border-color: blue;
+	padding-bottom: -10px;
+}
+
+/*media q for mobile*/
+@media screen and (max-width:767px){
+
+	.profileimg{
+		margin-left: -47px;
+		margin-top: -84px;
+
+	}
+
+	.card-title{
+		margin-left: 22%;
+		margin-top: -22%;
+	}
+	.img1{
+	  margin-top:  10%;
+	  margin-left: 1%;
+
+	}
+.row3{
+	padding-left: 0px;
+}
+.empty1{
+	display:none;
+}
+.card5 {
+	width:100%;
+}
+.navDropDown{
+	display: block;
+	margin-left: 16%;
+}
+.dropdown{
+	display: none;
+}
+.searchIcon{
+	display: none;
+}
+.special-img{
+	margin: auto;
+	border-radius: 20%;
+	height:30px;
+	width:30px;
+}
+.logopost {
+	margin-left: 10%;
+	margin-right: -5%;
+
+}
+.logo-nav
+{
+	 display: none;
+}
+.logOut{
+	margin-left: -20px;
+	margin-right: 25px;
+}
+#filtersubmit{
+	margin-top: -5px;
+}
+
+}
+/*media q for tablet*/
+@media screen and (max-width:1279px) and (min-width:767px) {
+	.row2{
+		margin-right:10px;
+	}
+	.row7{
+		padding-top:60px;
+		margin-right: 10px;
+	}
+	.HeaderContent {
+
+		background-image: url("/static/images/rowan-heuvel-110602_720.jpg");
+
+	   	background-position: 100%;
+
+		  background-position: center;
+
+	   	background-repeat: no-repeat;
+
+	   	background-size: cover;
+
+
+
+	  	height: 555px;
+
+
+	}
+	.profileimg{
+
+		margin-top: -350px;
+
+	}
+
+	.card-title{
+		margin-left: 10%;
+		margin-top: -8%;
+	}
+	.img1{
+	  margin-top:  3%;
+	  margin-left: 1%;
+
+	}
+.row3{
+	padding-left: 0px;
+}
+	.card5 {
+		width:100%;
+	}
+
+.dropdown{
+ margin-left: 50%;
+ margin-right: -290px;
+}
+.fa-search{
+ margin-left: -3%;
+}
 }

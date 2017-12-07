@@ -4,19 +4,18 @@
     {% if user.is_authenticated %}
       <h1>Welcome{{user.username}}</h1>
 
-      <form  enctype="multipart/form-data" method="POST" id="new_post" submit-url="{% url 'socialApp:home' %}" >
+
+      <form  method="POST">
         {% csrf_token %}
-        {% for field in post_form %}
-        <p>
-          {{ field }}
-          {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </p>
-        {% endfor %}
+        {{ reply_form.non_field_errors }}
+        {{ reply_form.source.errors }}
+        {{ reply_form.source }}
+
+        {{reply_form.text}}
        <input type="submit" value="submit" name='submit' class="button" alt=""/></br>
         <!--<input type="hidden" name="next" value="{{next}}">-->
       </form>
+
 
       <div id="post_feed">
         {% for post in posts %}

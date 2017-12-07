@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'embed_video',
     'socialApp',
 
+
 ]
 
 MIDDLEWARE = [

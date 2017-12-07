@@ -37,8 +37,8 @@
   <div class="row" style="margin-right:15px;" >
     <div class=" col-4 col-md-4 col-lg-3"></div>
       <div class=" col-4 col-md-4 col-lg-2" >
-          <div class="row8">
-            <a href="{% url 'socialApp:profile' username=request.user.username %}" class="card-link" style="color:black;font-weight:bold;margin-left:25px;">{{u.username}}'S FEED</a>
+          <div class="row6">
+            <a href="#!" class="card-link" style="color:black;font-weight:bold;margin-left:25px;">{{u.username}}'S FEED</a>
           </div>
 
         </div>
@@ -50,14 +50,12 @@
         </div>
         <div class=" col-lg-2 col-md-4 col-4">
           <div class="row6">
-            <a href="" class="card-link" style="color:black;font-weight:bold;margin-left:25px;">{{u.rel_from_set.count}} FOLLOWING</a>
+            <a href="#!" class="card-link" style="color:black;font-weight:bold;margin-left:25px;">{{u.rel_from_set.count}} FOLLOWING</a>
           </div>
         </div>
 
     </div>
   {% endfor %}
-
-
 {% endblock %}
 
 {% block body %}
@@ -67,6 +65,8 @@
 	</div>
 	<div class="cards2 col-lg-6 infinite-container">
   {% for post in posts %}
+    {% for like in likes %}
+      {% if post == like.post %}
 		<div class="cards infinite-item">
 			<div class="card">
 				<div class="row">
@@ -148,6 +148,8 @@
 						</div><!--collapse end-->
 			</div>
 		</div>
+    {% endif %}
+  {% endfor %}
 {% endfor %}
 
 	</div>

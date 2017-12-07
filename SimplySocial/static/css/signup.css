@@ -5,11 +5,18 @@
 /* CSS Document */
 
 body {
-	background-image:url("/static/images/signup.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url('/static/images/signup.jpg');
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url('/static/images/signup.jpg');
+   background-size: cover;
+   background-repeat: no-repeat;
+   padding-bottom: 30px;
+}
 
+.count {
+    color:#aaa;
+    border:3px solid #bbb;
+    border-radius:26px;
+    padding:10px 20px;
+    margin:20px 10px 0;
 }
 
 .h3Header {

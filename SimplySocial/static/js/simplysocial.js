@@ -1,10 +1,14 @@
 
 // When the user clicks on <div>, open the popup
-function myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-}
-
+function show() {
+    var x = document.getElementById("linkBox");
+    if (x.style.display === "none") {
+        x.style.display = "inline-block";
+      } else {
+        x.style.display = "none";
+      }
+   }
+   
 $('li.dropdown').hover(function() {
   $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
 }, function() {

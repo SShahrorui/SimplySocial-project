@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import User,UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
-from socialApp.models import Post,Profile
+from socialApp.models import Post,Profile,Reply
 from django.forms import ModelForm
 #from django.contrib.auth import get_user_model
 
@@ -44,7 +44,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('text','image','video_link')
         widgets = {
-            'text':forms.TextInput(attrs={'placeholder': 'Whats in your mind?','class':"postArea col-lg-12"}),
+            'text':forms.TextInput(attrs={'placeholder': 'Whats on your mind?','class':"postArea col-lg-12"}),
             'image':forms.FileInput(attrs={'class':'browse','id':'image' }),
             'video_link':forms.URLInput(attrs={'class':'video-box','id':'linkBox'})
         }
@@ -63,7 +63,11 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('profile_pic','bio','website')
 
-
+        widgets = {
+            'profile_pic':forms.FileInput(attrs={'class':'upload'}),
+            'bio':forms.TextInput(attrs={'class':'form-control','placeholder': 'Bio'}),
+            'website':forms.URLInput(attrs={'class':'form-control','placeholder': 'Website'})
+        }
 
 
 
@@ -71,3 +75,14 @@ class UserForm(forms.ModelForm):
    class Meta:
        model = User
        fields = ('username', 'email', 'password')
+
+       widgets = {
+            'username':forms.TextInput(attrs={'placeholder': 'Username','class':"form-control"}),
+            'email':forms.EmailInput(attrs={'class':'form-control','placeholder': 'Email'}),
+            'Password':forms.PasswordInput(attrs={'class':'form-control','placeholder': 'Password'})
+        }
+
+class ReplyForm(forms.ModelForm):
+    class Meta:
+        model = Reply
+        fields = ('text',)

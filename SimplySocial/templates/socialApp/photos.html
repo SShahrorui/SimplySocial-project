@@ -63,7 +63,7 @@
 
     <div class="row no-gutters"style="margin-left:45px;">
 
-        <div class="row2 col-lg-1 col-2">
+        <div class="row7 col-lg-1 col-2">
             <a href="{% url 'socialApp:home' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:7px;">All Posts</a>
         </div>
 
@@ -71,7 +71,7 @@
             <a href="{% url 'socialApp:photos' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:20px;">Photo</a>
         </div>
 
-        <div class="row2 col-lg-1" style="margin-right:240px;">
+        <div class="row7 col-lg-1" style="margin-right:240px;">
             <a href="{% url 'socialApp:videos' %}" class="card-link" style="color:black;font-size:15px;font-weight:bold;margin-left:20px;">Video</a>
         </div>
     </div>
@@ -84,12 +84,13 @@
 
 {% block body %}
 <div class="row">
-	<div class="empty col-lg-3">
-	</div>
-	<div class="cards2 col-lg-5" id="post_feed">
   {% for post in posts %}
+    {% for f in follow %}
+    {% if post.user == f.following or post.user == f.user %}
     {% if post.image %}
-  		<div class="cards">
+	<div class="cards3 col-lg-4">
+
+  		<div class="cards4">
   			<div class="card">
   				<div class="row">
   					<div class="proimg col-lg-2">
@@ -106,16 +107,14 @@
   							{{post.user}}
   							<div class="time">
                   <!--time-->
-                  <a class="links" href="test.html">
-  									<i class="fa fa-reply" aria-hidden="true"></i>
-  								</a>
+
                   <a class="links" href="test.html">
   									<i class="fa fa-heart-o" aria-hidden="true"></i>
   								</a>
   								<i style="font-size:10px; color:gray">{{post.created_date|naturaltime}}</i>
   							</div>
   						</p>
-  						<p class="card-text1">
+  						<p class="card-text">
                 <!--Text-->
   							{{post.text}}
   						</p>
@@ -128,13 +127,13 @@
     					<img class="img2 col-lg-12" src="{{post.image.url}}">
     				</div>
           {% endif %}
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{forloop.counter}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{post.post_id}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
             							<div class="row">
             								<p class="parg col-lg-4">expand</p>
             								<i class="fa fa-caret-down col-lg-1" style="font-size:10px;color:gray;" aria-hidden="true">&nbsp expand</i>
             							</div>
             	</button>
-              <div class="collapse" id="template{{forloop.counter}}">
+              <div class="collapse" id="template{{post.post_id}}">
   							<div class="row">
 
   								<div class="proimg col-lg-2">
@@ -161,32 +160,15 @@
   						</div><!--collapse end-->
   			</div>
   		</div>
-  {% endif %}
-{% endfor %}
+
 
 	</div>
-
+  {% endif %}
+  {% endif %}
+{% endfor %}
+  {% endfor %}
 </div>
 
-
-<!--loadmore-->
-
-<div class="row">
-
-    <div class="empty col-lg-5">
-
-    </div>
-
-    <div class="sub col-lg-2">
-
-        <input class="int1" type="submit" value="LOAD MORE">
-
-    </div>
-
-    <div class="empty col-lg-5">
-
-    </div>
-</div>
 
 
 <!--

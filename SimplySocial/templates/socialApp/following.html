@@ -1,0 +1,100 @@
+{% extends "socialApp/base.html" %}
+{% load staticfiles %}
+{% block header %}
+   {% for u in user %}
+<div class="row no-gutters">
+      <div class="col-6 col-md-6 col-lg-5"></div>
+
+      <div class="col-6 col-md-12 col-lg-7">
+        {% for p in profile %}
+          {% if p.user == u %}
+          <img class="profileimg" style="width:100px;height:100px ;margin-left:27px;border-radius:5px;" src="{{p.profile_pic.url}}" alt="Girl in a jacket" >
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="col-4 col-md-2 col-lg-4" ></div>
+      <div class="col-4 col-md-2 col-lg-11" style="margin-left:2%;" ><p class="pheader" style=" font-size:25px;text-align:center; color:white;">{{u.username}}<p></div>
+      <!--dont show follow button in my page-->
+      {% if u.username != request.user.username %}
+      <div class="follow3" style="margin-left:560px;margin-top:-20px;">
+
+        {% for f in follow %}
+        {% if f.user != "" %}
+          <a  class="btn btn-primary" id="btn" href="{% url 'socialApp:follow' pk=u.id %}">Unfollow</a>
+          {% endif %}
+          {% empty %}
+          <a  class="btn btn-primary" id="btn" href="{% url 'socialApp:follow' pk=u.id %}">Follow</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="col-12 col-md-2 col-lg-11"style="margin-left:2%;"><p class="pheader" style="color:white;font-size:20px;text-align:center">Designer and developer living in San Diego,CA</p></div>
+
+      <div class="col-12 col-md-12 col-lg-11"style="margin-left:2%;"><p class="pheader" style="color:black; text-align:center">{{u.email}}<p> </div>
+
+
+</div>
+  <div class="row" style="margin-right:15px;" >
+    <div class=" col-4 col-md-4 col-lg-3"></div>
+      <div class=" col-4 col-md-4 col-lg-2" >
+          <div class="row6">
+            <a href="{% url 'socialApp:profile' username=request.user.username %}" class="card-link" style="color:black;font-weight:bold;margin-left:25px;">{{u.username}}'S FEED</a>
+          </div>
+
+        </div>
+        <div class=" col-lg-2 col-md-4 col-4">
+          <div class="row6">
+            <a href="" class="card-link" style="color:black;font-weight:bold;margin-left:20px;">{{u.rel_to_set.count}} FOLLOWERS</a>
+          </div>
+
+        </div>
+        <div class=" col-lg-2 col-md-4 col-4">
+          <div class="row8">
+            <a href="" class="card-link" style="color:black;font-weight:bold;margin-left:25px;">{{u.rel_from_set.count}} FOLLOWING</a>
+          </div>
+        </div>
+
+    </div>
+  {% endfor %}
+{% endblock %}
+{% block body %}
+
+
+<div class="row">
+  <div class="empty col-lg-3">
+
+  </div>
+  <div class="tableRow col-lg-6">
+  <table class="table">
+
+
+        <tr>
+          <td></td>
+          <td>Username</td>
+          <td>Email</td>
+          <td>Followers</td>
+          <td>Following</td>
+        </tr>
+        {% for follow in following %}
+          <tr>
+            <td>
+                {% for p in profile %}
+                  {% if p.user.username == follow.following.username %}
+                    <img src="{{p.profile_pic.url}}" class="special-img">
+                  {% endif %}
+                {% endfor %}
+            </td>
+            <td><a href="{% url 'socialApp:profile' username=follow.following.username %}">{{follow.following.username}}</a></td>
+            <td>{{follow.following.email}}</td>
+            <td>{{follow.following.rel_to_set.count}}</td>
+            <td>{{follow.following.rel_from_set.count}}</td>
+          </tr>
+        {% empty %}
+          <p>has no followers</p>
+        {% endfor %}
+
+
+  </table>
+</div>
+
+
+{% endblock %}

@@ -64,11 +64,11 @@
 
     <div class="row no-gutters"style="margin-left:45px;">
 
-        <div class="row2 col-lg-1 col-2">
+        <div class="row7 col-lg-1 col-2">
             <a href="{% url 'socialApp:home' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:7px;">All Posts</a>
         </div>
 
-        <div class="row2 col-lg-1">
+        <div class="row7 col-lg-1">
             <a href="{% url 'socialApp:photos' %}" class="card-link" style="color:black; font-size:15px;font-weight:bold;margin-left:20px;">Photo</a>
         </div>
 
@@ -85,13 +85,13 @@
 
 {% block body %}
 
-<div class="row no-gutters">
-	<div class="empty col-lg-3">
-	</div>
-	<div class="cards2 col-lg-6" id="post_feed">
+<div class="row">
   {% for post in posts %}
+  {% for f in follow %}
+    {% if post.user == f.following or post.user == f.user %}
     {% if post.video_link %}
-		<div class="cards">
+	<div class="cards3 col-lg-4" >
+		<div class="cards4">
 			<div class="card">
 				<div class="row">
 					<div class="proimg col-lg-2">
@@ -108,9 +108,7 @@
 							{{post.user}}
 							<div class="time">
                 <!--time-->
-                <a class="links" href="test.html">
-									<i class="fa fa-reply" aria-hidden="true" style="font-size:15px;margin-right:15px;"></i>
-								</a>
+
                 <a class="links" href="test.html">
 									<i class="fa fa-heart-o" aria-hidden="true" style="font-size:15px; margin-right:15px;"></i>
 								</a>
@@ -132,16 +130,16 @@
         {% endif %}
           {% if post.video_link %}
             {% video post.video_link as my_video %}
-              {% video my_video '553x400' %}
+              {% video my_video '349x250' %}
             {% endvideo %}
           {% endif %}
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{forloop.counter}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#template{{post.post_id}}" aria-expanded="true" style="border-width:0px solid; background-color:white; border-color:white;"aria-controls="collapseExample">
           							<div class="row">
           								<p class="parg col-lg-4">expand</p>
           								<i class="fa fa-caret-down col-lg-1" style="font-size:10px;color:gray;" aria-hidden="true">&nbsp expand</i>
           							</div>
           	</button>
-            <div class="collapse" id="template{{forloop.counter}}">
+            <div class="collapse" id="template{{post.post_id}}">
 							<div class="row">
 
 								<div class="proimg col-lg-2">
@@ -172,94 +170,17 @@
 						</div><!--collapse end-->
 			</div>
 		</div>
-      {% endif %}
-{% endfor %}
+
 
 	</div>
-
-</div>
-
-
-<!--loadmore-->
-
-<div class="row">
-
-    <div class="empty col-lg-5">
-
-    </div>
-
-    <div class="sub col-lg-2">
-
-        <input class="int1" type="submit" value="LOAD MORE">
-
-    </div>
-
-    <div class="empty col-lg-5">
-
-    </div>
-</div>
-
-
-<!--
-<div class="popup" onclick="myFunction()">Click me!
-
-<span class="popuptext" id="myPopup">Popup text...</span>
-
-</div>
-
-​
-
-<div class="infinite-container">
-
-{% for number in numbers %}
-
-<div class="infinite-item">{{ number }}</div>
-
+  {% endif %}
+  {% endif %}
 {% endfor %}
-
+{% endfor %}
 </div>
 
-​
 
-{% if numbers.has_next %}
 
-<a class="infinite-more-link" href="?page={{ numbers.next_page_number }}">More</a>
-
-{% endif %}
-
-​
-
-<div class="loading" style="display: none;">
-
-Loading...
-
-</div>
-
-​
-
-<script>
-
-var infinite = new Waypoint.Infinite({
-
-element: $('.infinite-container')[0],
-
-onBeforePageLoad: function () {
-
-$('.loading').show();
-
-},
-
-onAfterPageLoad: function ($items) {
-
-$('.loading').hide();
-
-}
-
-});
-
-</script>
-
--->
 
  <script type="text/javascript">
 

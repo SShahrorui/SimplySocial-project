@@ -1,0 +1,109 @@
+{% extends "socialApp/base.html" %}
+{% load staticfiles %}
+{% block body %}
+	<div class="row">
+<div class="empty col-lg-3">
+
+</div>
+<div class="content1">
+			<form enctype="multipart/form-data" method="POST">
+				{% csrf_token %}
+				{{ user_form.non_field_errors }}
+				{{ user_form.source.errors }}
+				{{ user_form.source }}
+
+				{{ profile_form.non_field_errors }}
+				{{ profile_form.source.errors }}
+				{{ profile_form.source }}
+         <h3 class="header3">Settings</h3>
+         </br>
+         </br>
+         <p class="parg2">ACCOUNT</p>
+         <div class="row">
+            <div class="col-sm-2">
+               <img id="blah" src="{{instance_profile.profile_pic.url}}" alt="" width=80 height=80 border="5"/>
+
+							<input type='file' id="selectedFile" onchange="readURL(this)" style="display: none;"/>
+							</br>
+							<!--<input type="button" value="change" class="button" style="margin-top:10px;" class="upload" onclick="document.getElementById('selectedFile').click();"/></br>-->
+								{{profile_form.profile_pic.error}}
+								{{profile_form.profile_pic}}
+               </br>
+               </br>
+            </div>
+            <div class="col-sm-3">
+                  <div class="inner-addon left-addon">
+                     <i class="glyphicon glyphicon-user"></i>
+										 {{user_form.username.error}}
+										 {{ user_form.username }}
+                  </div>
+                  </br>
+                  <div class="inner-addon left-addon">
+                     <i class="glyphicon glyphicon-envelope"></i>
+										 {{user_form.email.error}}
+										 {{ user_form.email }}
+                  </br>
+                  <div class="inner-addon left-addon">
+                     <i class="glyphicon glyphicon-lock"></i>
+										 {{user_form.password.error}}
+										 {{ user_form.password }}
+                  </div>
+                  </br>
+
+                  <div class="inner-addon left-addon">
+										 {{profile_form.bio.error}}
+										 {{ profile_form.bio }}
+                  </div>
+                  </br>
+                  <div class="inner-addon left-addon">
+										 {{profile_form.website.error}}
+										{{ profile_form.website }}
+                  </div>
+
+            </div>
+						<input type="submit" value="Save Changes" class="save" style="margin-top:20px;"/></br>
+         	</div>
+				  </form>
+
+      <div class="row">
+         <div class="col-sm-7">
+            <hr/>
+         </div>
+      </div>
+      </br></br>
+
+      </br></br></br>
+
+      <hr size="50">
+      </div>
+</div>
+   <script>
+      function readURL(input) {
+             if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+
+                 reader.onload = function (e) {
+                     $('#blah')
+                         .attr('src', e.target.result)
+                         .width(90)
+                         .height(80);
+
+ 											$('#blah2')
+                         .attr('src', e.target.result)
+                         .width(30)
+                         .height(30);
+                 };
+
+
+                 reader.readAsDataURL(input.files[0]);
+             }
+
+
+         }
+   </script>
+<script language="javascript">
+    function changeImage() {
+document.getElementById("blah2").src = document.getElementById("blah").src
+    }
+</script>
+{% endblock %}
